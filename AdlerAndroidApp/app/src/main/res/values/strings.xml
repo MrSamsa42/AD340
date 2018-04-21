@@ -1,13 +1,7 @@
 <resources>
     <string name="app_name">AdlerAndroidApp</string>
     <string name="about">About the Author</string>
-    <string name="bio">My name is Jonathan Adler. I graduated from UW in 2003 with a degree
-        in Zoology, and I have spent the last 13 years working in various labs. I have
-        examined the stomach contents of juvenile salmon; fed chemicals to machines that
-        build DNA microarrays; worked with drug companies to determine the bioavailability
-        and metabolite profiles of experimental compounds; and prepared archaeological samples
-        for radiocarbon dating by accelerator mass spectrometry. Although I love science, it
-        has slowly dawned on me that I don’t like doing science. So, I started coding...."</string>
+    <string name="bio">Long story short: I used to be a laboratory scientist; now I'm not</string>
     <string name="ask">Ask Me Anything:</string>
     <string name="hint">dont be shy...</string>
     <string name="btntxt">Ask!</string>

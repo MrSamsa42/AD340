@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.util.Log;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,4 +57,26 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("question", questionText);
         startActivity(intent);
     }
+
+    public void onButton3Click(View view){
+        CharSequence text = "Cheers!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(this, text, duration);
+        toast.show();
+    }
+
+    public void onButton4Click(View view){
+        CharSequence text = "Prost!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(this, text, duration);
+        toast.show();
+    }
+
+    public void onButton5Click(View view){
+        CharSequence text = "à votre santé!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(this, text, duration);
+        toast.show();
+    }
+
 }
