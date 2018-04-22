@@ -1,6 +1,7 @@
 package com.example.mrsam.adlerandroidapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
@@ -32,7 +33,7 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomViewHolder holder, final int position) {
         Movie movie = movies.get(position);
         holder.movieTitle.setText(movie.title);
         holder.movieYear.setText(Integer.toString(movie.year));
@@ -43,10 +44,13 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context, "hi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, movies.get(position).director, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(context, MovieDetailActivity.class);
+                intent.putExtra("movieTitle", movies.get(position).title);
+                context.startActivity(intent);
             }
         });
-
     }
 
     @Override
