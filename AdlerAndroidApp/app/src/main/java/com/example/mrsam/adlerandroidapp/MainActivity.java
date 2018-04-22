@@ -79,4 +79,9 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
 
+    public void onMovieButtonClick(View view){
+        Intent intent = new Intent(this, MovieViewActivity.class);
+        startActivity(intent);
+    }
+
 }
