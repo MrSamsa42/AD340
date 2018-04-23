@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 
 public class MovieDetailActivity extends AppCompatActivity {
@@ -15,7 +14,6 @@ public class MovieDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_detail);
 
         getMovieDetailIntent();
-
     }
 
     private void getMovieDetailIntent() {
@@ -23,7 +21,8 @@ public class MovieDetailActivity extends AppCompatActivity {
                 && getIntent().hasExtra("movieYear")
                 && getIntent().hasExtra("movieDirector")
                 && getIntent().hasExtra("imageURL")
-                && getIntent().hasExtra("movieDescription")){
+                && getIntent().hasExtra("movieDescription"))
+        {
             String movieTitle = getIntent().getStringExtra("movieTitle");
             String movieYear = getIntent().getStringExtra("movieYear");
             String movieDirector = getIntent().getStringExtra("movieDirector");
@@ -35,8 +34,8 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
     private void setDetails(String title, String year, String director, String url, String description) {
-
         ImageView movieImageURL = findViewById(R.id.movie_pic);
+
         TextView movieTitle = findViewById(R.id.detail_title);
         TextView movieYear = findViewById(R.id.detail_year);
         TextView movieDirector = findViewById(R.id.detail_director);
@@ -49,6 +48,4 @@ public class MovieDetailActivity extends AppCompatActivity {
         movieDirector.setText(director);
         movieDescription.setText(description);
     }
-
-
 }

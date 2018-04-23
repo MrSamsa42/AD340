@@ -11,14 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
 public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHolder>{
-
     private Context context;
     private ArrayList<Movie> movies;
-
 
     public MovieAdaptor(Context context, ArrayList<Movie> movies) {
         this.context = context;
@@ -37,22 +34,6 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
         Movie movie = movies.get(position);
         holder.movieTitle.setText(movie.title);
         holder.movieYear.setText(Integer.toString(movie.year));
-
-        //adding click listener
-
-        /*
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(context, movies.get(position).director, Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(context, MovieDetailActivity.class);
-                intent.putExtra("movieTitle", movies.get(position).title);
-                context.startActivity(intent);
-            }
-        });
-        */
     }
 
     @Override
@@ -73,10 +54,11 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
             parentLayout = (CardView)view.findViewById(R.id.parent_layout);
 
             view.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
+                @Override
+                public void onClick(View v) {
                     int pos = getAdapterPosition();
 
-                    Toast.makeText(view.getContext(), movies.get(pos).director, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(view.getContext(), movies.get(pos).director, Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(context, MovieDetailActivity.class);
 
@@ -85,11 +67,10 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
                     intent.putExtra("movieDirector", movies.get(pos).director);
                     intent.putExtra("imageURL", movies.get(pos).imageURL);
                     intent.putExtra("movieDescription", movies.get(pos).description);
+
                     context.startActivity(intent);
                 }
             });
-
         }
     }
-
 }

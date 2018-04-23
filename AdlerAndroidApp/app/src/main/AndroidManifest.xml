@@ -20,11 +20,16 @@
         </activity>
         <activity
             android:name=".ReceiveQuestion"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity">
+        </activity>
         <activity
             android:name=".MovieViewActivity"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".MovieDetailActivity"></activity>
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity
+            android:name=".MovieDetailActivity"
+            android:parentActivityName=".MovieViewActivity">
+        </activity>
     </application>
 
 </manifest>

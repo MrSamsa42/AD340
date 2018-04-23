@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AdlerAndroidApp</string>
     <string name="about">About the Author</string>
-    <string name="bio">Long story short: I used to be a laboratory scientist; now I'm not</string>
+    <string name="bio">Long story short: I used to be a laboratory scientist; now I\'m not.</string>
     <string name="ask">Ask Me Anything:</string>
     <string name="hint">dont be shy...</string>
     <string name="btntxt">Ask!</string>
