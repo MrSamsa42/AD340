@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="70"
         android:id="@+id/movie_pic"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:src="@mipmap/ic_launcher"/>
 
     <TextView
