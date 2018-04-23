@@ -30,24 +30,31 @@
         android:id="@+id/detail_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/detail_director"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/detail_year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/detail_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="TextView" />
 </LinearLayout>
 
