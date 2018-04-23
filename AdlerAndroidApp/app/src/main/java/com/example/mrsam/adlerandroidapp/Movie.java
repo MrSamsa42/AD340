@@ -1,9 +1,12 @@
 package com.example.mrsam.adlerandroidapp;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Movie {
     public String title;
     public int year;
     public String director;
+    @SerializedName("image")
     public String imageURL;
     public String description;
 

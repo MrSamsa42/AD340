@@ -83,6 +83,7 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
                     intent.putExtra("movieTitle", movies.get(pos).title);
                     intent.putExtra("movieYear", Integer.toString(movies.get(pos).year) );
                     intent.putExtra("movieDirector", movies.get(pos).director);
+                    intent.putExtra("imageURL", movies.get(pos).imageURL);
                     intent.putExtra("movieDescription", movies.get(pos).description);
                     context.startActivity(intent);
                 }
