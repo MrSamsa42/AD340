@@ -40,6 +40,7 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
 
         //adding click listener
 
+        /*
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +52,7 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
                 context.startActivity(intent);
             }
         });
+        */
     }
 
     @Override
@@ -64,11 +66,28 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
         TextView movieYear;
         CardView parentLayout;
 
-        public CustomViewHolder(View view) {
+        public CustomViewHolder(final View view) {
             super(view);
             movieTitle = (TextView)view.findViewById(R.id.movie_title);
             movieYear = (TextView)view.findViewById(R.id.movie_year);
             parentLayout = (CardView)view.findViewById(R.id.parent_layout);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    int pos = getAdapterPosition();
+
+                    Toast.makeText(view.getContext(), movies.get(pos).director, Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(context, MovieDetailActivity.class);
+
+                    intent.putExtra("movieTitle", movies.get(pos).title);
+                    intent.putExtra("movieYear", Integer.toString(movies.get(pos).year) );
+                    intent.putExtra("movieDirector", movies.get(pos).director);
+                    intent.putExtra("movieDescription", movies.get(pos).description);
+                    context.startActivity(intent);
+                }
+            });
+
         }
     }
 
