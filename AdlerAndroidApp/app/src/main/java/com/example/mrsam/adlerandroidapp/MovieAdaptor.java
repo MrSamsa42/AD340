@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHolder>{
@@ -57,8 +56,6 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
                 @Override
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
-
-                    //Toast.makeText(view.getContext(), movies.get(pos).director, Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(context, MovieDetailActivity.class);
 
