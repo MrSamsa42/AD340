@@ -9,4 +9,6 @@
     <string name="question_placeholder">(Question text)</string>
     <string name="answer_heading">My Answer:</string>
     <string name="default_answer">I have no idea, man!</string>
+    <string name="btn_cheers">Cheers!</string>
+    <string name="zombie">Zombie!</string>
 </resources>
