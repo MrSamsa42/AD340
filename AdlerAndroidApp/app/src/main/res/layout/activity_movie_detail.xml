@@ -14,10 +14,12 @@
     android:layout_height="wrap_content"
     tools:context=".MovieDetailActivity"
     android:orientation="vertical"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    android:paddingStart="8dp"
-    android:paddingEnd="8dp">
+    android:paddingBottom="16dp">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_main"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -33,7 +35,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 
     <TextView
         android:id="@+id/detail_director"
@@ -41,7 +45,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 
     <TextView
         android:id="@+id/detail_year"
@@ -49,14 +55,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 
     <TextView
         android:id="@+id/detail_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 </LinearLayout>
 
 </ScrollView>

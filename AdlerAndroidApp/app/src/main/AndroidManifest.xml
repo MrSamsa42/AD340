@@ -14,20 +14,22 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ReceiveQuestion"
+            android:label="@string/question_activity"
             android:parentActivityName=".MainActivity">
         </activity>
         <activity
             android:name=".MovieViewActivity"
+            android:label="@string/movie_list_activity"
             android:parentActivityName=".MainActivity">
         </activity>
         <activity
             android:name=".MovieDetailActivity"
+            android:label="@string/movie_detail_activity"
             android:parentActivityName=".MovieViewActivity">
         </activity>
     </application>

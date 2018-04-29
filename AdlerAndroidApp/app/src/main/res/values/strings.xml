@@ -1,5 +1,14 @@
 <resources>
-    <string name="app_name">AdlerAndroidApp</string>
+
+    <!--name of the application-->
+    <string name="app_name">The Adler Android App</string>
+
+    <!-- names for activities-->
+    <string name="question_activity">Your Question</string>
+    <string name="movie_list_activity">Zombie Movies</string>
+    <string name="movie_detail_activity">Movie Details</string>
+    <string name="about_activity">About the App</string>
+
     <string name="about">About the Author</string>
     <string name="bio">Long story short: I used to be a laboratory scientist; now I\'m not.</string>
     <string name="ask">Ask Me Anything:</string>
