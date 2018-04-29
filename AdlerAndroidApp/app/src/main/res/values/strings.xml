@@ -9,6 +9,10 @@
     <string name="movie_detail_activity">Movie Details</string>
     <string name="about_activity">About the App</string>
 
+    <!--open/close drawer actions - for accessibility purposes -->
+    <string name="nav_open_drawer">Open navigation drawer</string>
+    <string name="nav_close_drawer">Close navigation drawer</string>
+
     <string name="about">About the Author</string>
     <string name="bio">Long story short: I used to be a laboratory scientist; now I\'m not.</string>
     <string name="ask">Ask Me Anything:</string>

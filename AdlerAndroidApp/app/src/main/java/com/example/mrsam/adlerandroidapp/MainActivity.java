@@ -1,16 +1,21 @@
 package com.example.mrsam.adlerandroidapp;
 
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.util.Log;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    private DrawerLayout drawer;
     protected static final String TAG = "mrsam.adlerandroidapp";
 
     @Override
@@ -18,9 +23,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Add toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.nav_open_drawer, R.string.nav_close_drawer);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(
+            new NavigationView.OnNavigationItemSelectedListener(){
+                @Override
+                public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    menuItem.setChecked(true);
+                    //TODO: handle navigation
+                    //Closing drawer on item click
+                    drawer.closeDrawers();
+                    return true;
+                }
+            }
+        );
 
         Log.d(TAG, "onCreate called from Main Activity");
     }
