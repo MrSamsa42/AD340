@@ -85,12 +85,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //what to do when option is selected
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        CharSequence text = "Settings!";
+        CharSequence text;
         int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(this, text, duration);
-        toast.show();
 
-        return super.onOptionsItemSelected(item);
+        switch(item.getItemId()){
+            case R.id.settings_menu:
+                text = "Settings!";
+                Toast toast = Toast.makeText(this, text, duration);
+                toast.show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void onSendQuestion(View view){

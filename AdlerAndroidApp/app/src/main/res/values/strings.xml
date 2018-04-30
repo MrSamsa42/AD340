@@ -13,7 +13,9 @@
     <string name="nav_open_drawer">Open navigation drawer</string>
     <string name="nav_close_drawer">Close navigation drawer</string>
 
+    <!--action menu-->
     <string name="settings_menu">Settings</string>
+    <string name="search_menu">Search</string>
 
     <string name="about">About the Author</string>
     <string name="bio">Long story short: I used to be a laboratory scientist; now I\'m not.</string>
