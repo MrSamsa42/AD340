@@ -5,9 +5,9 @@
 
     <!-- names for activities-->
     <string name="question_activity">Your Question</string>
-    <string name="movie_list_activity">Zombie Movies</string>
+    <string name="movie_list_activity">Movies</string>
     <string name="movie_detail_activity">Movie Details</string>
-    <string name="about_activity">About the App</string>
+    <string name="about_activity">About</string>
 
     <!--open/close drawer actions - for accessibility purposes -->
     <string name="nav_open_drawer">Open navigation drawer</string>
