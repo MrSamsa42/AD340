@@ -17,6 +17,15 @@
     <string name="settings_menu">Settings</string>
     <string name="search_menu">Search</string>
 
+    <!--filler-->
+    <string name="filler">Lorem ipsum dolor amet food truck crucifix microdosing selfies pork belly.
+        Paleo vinyl 3 wolf moon, literally bitters beard try-hard retro ugh small batch disrupt
+        enamel pin post-ironic mixtape. Woke scenester echo park schlitz vegan organic kale chips
+        mlkshk, locavore air plant slow-carb retro. Fixie af squid synth, bitters pug vexillologist
+        kombucha kinfolk flexitarian tote bag knausgaard. Paleo fanny pack snackwave marfa prism,
+        etsy pabst. Umami subway tile cliche, listicle cloud bread cray shoreditch taiyaki food
+        truck.</string>
+
     <string name="about">About the Author</string>
     <string name="bio">Long story short: I used to be a laboratory scientist; now I\'m not.</string>
     <string name="ask">Ask Me Anything:</string>
