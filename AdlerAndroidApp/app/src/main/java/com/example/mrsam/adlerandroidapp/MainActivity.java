@@ -17,12 +17,14 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private DrawerLayout drawer;
-    private ActionBarDrawerToggle toggle;
+
     protected static final String TAG = "mrsam.adlerandroidapp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DrawerLayout drawer;
+        ActionBarDrawerToggle toggle;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -63,6 +65,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     //Create options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -70,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onCreateOptionsMenu(menu);
     }
 
+    //what to do when option is selected
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         CharSequence text = "Settings!";
@@ -114,8 +127,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(this, MovieViewActivity.class);
         startActivity(intent);
     }
-
-
 
     @Override
     protected void onStart() {
