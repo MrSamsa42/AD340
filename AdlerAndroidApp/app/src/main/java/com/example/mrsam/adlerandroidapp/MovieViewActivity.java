@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 //import com.google.gson.GsonBuilder;
@@ -63,5 +66,22 @@ public class MovieViewActivity extends AppCompatActivity {
 
         MovieAdaptor movieAdaptor = new MovieAdaptor(getApplicationContext(), movieList);
         recyclerView.setAdapter(movieAdaptor);
+    }
+
+    //Create options menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        CharSequence text = "Settings!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(this, text, duration);
+        toast.show();
+
+        return super.onOptionsItemSelected(item);
     }
 }

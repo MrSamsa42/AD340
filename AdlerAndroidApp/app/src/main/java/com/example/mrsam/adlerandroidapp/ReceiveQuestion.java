@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ReceiveQuestion extends AppCompatActivity {
 
@@ -32,6 +35,23 @@ public class ReceiveQuestion extends AppCompatActivity {
         TextView questionView = (TextView)findViewById(R.id.question_received);
         questionView.setText(questionText);
         Log.d(TAG, "onCreate called from ReceiveQuestion");
+    }
+
+    //Create options menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        CharSequence text = "Settings!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(this, text, duration);
+        toast.show();
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
