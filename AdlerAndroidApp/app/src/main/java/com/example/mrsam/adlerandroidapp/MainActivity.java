@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    //close drawer when back button pressed
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -88,12 +89,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         CharSequence text;
         int duration = Toast.LENGTH_SHORT;
 
-        switch(item.getItemId()){
+        switch(item.getItemId()) {
             case R.id.settings_menu:
                 text = "Settings!";
-                Toast toast = Toast.makeText(this, text, duration);
-                toast.show();
+                Toast.makeText(this, text, duration).show();
                 return true;
+            case R.id.search_menu:
+                text = "Search!";
+                Toast.makeText(this, text, duration).show();
             default:
                 return super.onOptionsItemSelected(item);
         }
