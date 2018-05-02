@@ -1,7 +1,12 @@
 <resources>
-
     <!--name of the application-->
     <string name="app_name">The Adler Android App</string>
+
+    <!--file name of shared preference-->
+    <string name="saved_question">com.example.mrsam.adlerandroidapp_saved_question</string>
+
+    <!--shared preferences keys-->
+    <string name="question_key">question</string>
 
     <!-- names for activities-->
     <string name="question_activity">Your Question</string>
@@ -17,7 +22,23 @@
     <string name="settings_menu">Settings</string>
     <string name="search_menu">Search</string>
 
-    <!--filler-->
+    <!--Strings for MainActivity -->
+    <string name="about">About the Author</string>
+    <string name="bio">Long story short: I used to be a laboratory scientist; now I\'m not.</string>
+    <string name="ask">Ask Me Anything:</string>
+    <string name="default_question">Sup?</string>
+    <string name="btn_cheers">Cheers!</string>
+    <string name="zombie">Zombie!</string>
+    <string name="btntxt">Ask!</string>
+    <string name="question_text">Whatever</string>
+
+    <!--Strings for ReceiveQuestion Activity-->
+    <string name="question_heading">Your Question:</string>
+    <string name="question_placeholder">(Question text)</string>
+    <string name="answer_heading">My Answer:</string>
+    <string name="default_answer">I have no idea, man!</string>
+
+    <!--Strings for About Activity -->
     <string name="filler">Lorem ipsum dolor amet food truck crucifix microdosing selfies pork belly.
         Paleo vinyl 3 wolf moon, literally bitters beard try-hard retro ugh small batch disrupt
         enamel pin post-ironic mixtape. Woke scenester echo park schlitz vegan organic kale chips
@@ -26,15 +47,4 @@
         etsy pabst. Umami subway tile cliche, listicle cloud bread cray shoreditch taiyaki food
         truck.</string>
 
-    <string name="about">About the Author</string>
-    <string name="bio">Long story short: I used to be a laboratory scientist; now I\'m not.</string>
-    <string name="ask">Ask Me Anything:</string>
-    <string name="hint">dont be shy...</string>
-    <string name="btntxt">Ask!</string>
-    <string name="question_heading">Your Question:</string>
-    <string name="question_placeholder">(Question text)</string>
-    <string name="answer_heading">My Answer:</string>
-    <string name="default_answer">I have no idea, man!</string>
-    <string name="btn_cheers">Cheers!</string>
-    <string name="zombie">Zombie!</string>
 </resources>

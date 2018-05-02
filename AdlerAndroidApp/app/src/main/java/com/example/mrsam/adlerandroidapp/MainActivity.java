@@ -1,5 +1,7 @@
 package com.example.mrsam.adlerandroidapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,8 +22,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     protected static final String TAG = "mrsam.adlerandroidapp";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Context context = getApplicationContext();
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.saved_question), MODE_PRIVATE);
+
         DrawerLayout drawer;
         ActionBarDrawerToggle toggle;
 
@@ -37,10 +43,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        Log.d(TAG, "onCreate called from Main Activity");
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        EditText questionView = (EditText) findViewById(R.id.question);
+        String defaultValue = getResources().getString(R.string.default_question);
+        String savedQuestion = sharedPreferences.getString(getString(R.string.question_key), defaultValue);
+        questionView.setText(savedQuestion);
+
+        //for debugging
+        Log.d(TAG, "onCreate called from Main Activity");
     }
 
     //need this because main implements NavigationView.OnNavigationItemSelectedListener
@@ -106,9 +119,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         EditText questionView = (EditText) findViewById(R.id.question);
         String questionText = questionView.getText().toString();
 
-        Intent intent = new Intent(this, ReceiveQuestion.class);
-        intent.putExtra("question", questionText);
-        startActivity(intent);
+        if(questionText.endsWith("?")) {
+
+            Context context = getApplicationContext();
+            SharedPreferences sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.saved_question), MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            String key = this.getResources().getString(R.string.question_key);
+            editor.putString(key, questionText);
+            editor.commit();
+
+            Intent intent = new Intent(this, ReceiveQuestion.class);
+            intent.putExtra("question", questionText);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "You forgot the question mark!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void onButton3Click(View view){
