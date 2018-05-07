@@ -118,8 +118,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onSendQuestion(View view){
         EditText questionView = (EditText) findViewById(R.id.question);
         String questionText = questionView.getText().toString();
+        String invalidInput = "";
+        Intent intent;
 
-        if(questionText.endsWith("?")) {
+        if(!questionText.isEmpty()){   //&& !questionText.matches("-?\\d+(\\.\\d+)?")){
 
             Context context = getApplicationContext();
             SharedPreferences sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.saved_question), MODE_PRIVATE);
@@ -128,12 +130,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             editor.putString(key, questionText);
             editor.commit();
 
-            Intent intent = new Intent(this, ReceiveQuestion.class);
+            intent = new Intent(this, ReceiveQuestion.class);
             intent.putExtra("question", questionText);
             startActivity(intent);
         } else {
-            Toast.makeText(this, "You forgot the question mark!", Toast.LENGTH_SHORT).show();
+            invalidInput = "Invalid input -- try again!";
+            Toast.makeText(this, invalidInput, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public boolean validateInput(String str){
+        return !str.isEmpty();
     }
 
     public void onButton3Click(View view){
