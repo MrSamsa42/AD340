@@ -1,14 +1,14 @@
 package com.example.mrsam.adlerandroidapp;
 
-import android.support.test.rule.ActivityTestRule;
-import android.view.View;
+        import android.support.test.rule.ActivityTestRule;
+        import android.view.View;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+        import org.junit.After;
+        import org.junit.Before;
+        import org.junit.Rule;
+        import org.junit.Test;
 
-import static org.junit.Assert.*;
+        import static org.junit.Assert.*;
 
 public class MainActivityTest {
 

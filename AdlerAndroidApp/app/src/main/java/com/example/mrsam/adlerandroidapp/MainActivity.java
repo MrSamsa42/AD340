@@ -21,6 +21,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected static final String TAG = "mrsam.adlerandroidapp";
+    private SharedPrefs sharedPrefs;
+    private String savedQuestion;
 
 
     @Override
@@ -46,10 +48,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         EditText questionView = (EditText) findViewById(R.id.question);
-        String defaultValue = getResources().getString(R.string.default_question);
-        String savedQuestion = sharedPreferences.getString(getString(R.string.question_key), defaultValue);
+        sharedPrefs = new SharedPrefs(getApplicationContext());
+        savedQuestion = sharedPrefs.getSharedPrefs();
         questionView.setText(savedQuestion);
 
         //for debugging
@@ -123,12 +124,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if(!questionText.isEmpty()){   //&& !questionText.matches("-?\\d+(\\.\\d+)?")){
 
-            Context context = getApplicationContext();
-            SharedPreferences sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.saved_question), MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            String key = this.getResources().getString(R.string.question_key);
-            editor.putString(key, questionText);
-            editor.commit();
+            sharedPrefs.putSharedPrefs(questionText);
 
             intent = new Intent(this, ReceiveQuestion.class);
             intent.putExtra("question", questionText);
