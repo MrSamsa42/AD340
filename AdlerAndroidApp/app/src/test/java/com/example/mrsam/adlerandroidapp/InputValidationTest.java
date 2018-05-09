@@ -5,13 +5,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class MainActivityTest {
+public class InputValidationTest {
 
     @Test
     public void validateInput() {
         MainActivity mActivity = new MainActivity();
         String positiveTestPhrase = "This should work";
-        String negativeTestPhase = "";
+        String negativeTestPhase = ""; //...and this should not work
 
         assertTrue(mActivity.validateInput(positiveTestPhrase));
         assertFalse(mActivity.validateInput(negativeTestPhase));

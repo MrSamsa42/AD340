@@ -10,7 +10,7 @@ package com.example.mrsam.adlerandroidapp;
 
         import static org.junit.Assert.*;
 
-public class MainActivityTest {
+public class ViewRenderTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
