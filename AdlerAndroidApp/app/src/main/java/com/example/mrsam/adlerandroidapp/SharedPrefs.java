@@ -6,22 +6,26 @@ import android.content.res.Resources;
 
 
 public class SharedPrefs{
-    private SharedPreferences sharedPreferences;
-    private Context context;
 
-    public SharedPrefs(Context context){
-        this.context = context;
-        sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.saved_question), Context.MODE_PRIVATE);
+    //key for saving values in Shared Preferences.  Putting this here as a constant so that I do not
+    //have to access Strings resource later.
+    static final String QUESTION_KEY = "question";
+
+    private SharedPreferences sharedPreferences;
+
+    public SharedPrefs(SharedPreferences sharedPreferences){
+        this.sharedPreferences = sharedPreferences;
     }
 
-    public void putSharedPrefs(String str){
+    //
+    public boolean putSharedPrefs(String str){
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(context.getResources().getString(R.string.question_key), str);
-        editor.commit();
+        editor.putString(QUESTION_KEY, str);
+
+        return editor.commit();
     }
 
     public String getSharedPrefs(){
-        String str = sharedPreferences.getString(context.getResources().getString(R.string.question_key),context.getResources().getString(R.string.default_question));
-        return str;
+        return sharedPreferences.getString(QUESTION_KEY, "whatever");
     }
 }

@@ -22,14 +22,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     protected static final String TAG = "mrsam.adlerandroidapp";
     private SharedPrefs sharedPrefs;
+    private SharedPreferences sharedPreferences;
     private String savedQuestion;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Context context = getApplicationContext();
-        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.saved_question), MODE_PRIVATE);
 
+        //Instantiate sharedPreferences and SharedPrefs(i.e. helper class)
+        sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.saved_question), Context.MODE_PRIVATE);
+        sharedPrefs = new SharedPrefs(sharedPreferences);
         DrawerLayout drawer;
         ActionBarDrawerToggle toggle;
 
@@ -49,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         EditText questionView = (EditText) findViewById(R.id.question);
-        sharedPrefs = new SharedPrefs(getApplicationContext());
         savedQuestion = sharedPrefs.getSharedPrefs();
         questionView.setText(savedQuestion);
 

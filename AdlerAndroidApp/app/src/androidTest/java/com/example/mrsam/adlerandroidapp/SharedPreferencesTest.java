@@ -1,5 +1,7 @@
 package com.example.mrsam.adlerandroidapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.test.rule.ActivityTestRule;
 import android.view.View;
 
@@ -27,7 +29,11 @@ public class SharedPreferencesTest {
 
     @Test
     public void testSharedPrefs(){
-        SharedPrefs sharedPrefs = new SharedPrefs(mActivity.getApplicationContext());
+
+
+        //Instantiate sharedPreferences and SharedPrefs(i.e. helper class)
+        SharedPreferences sharedPreferences = mActivity.getSharedPreferences(mActivity.getResources().getString(R.string.saved_question), Context.MODE_PRIVATE);
+        SharedPrefs sharedPrefs = new SharedPrefs(sharedPreferences);
         sharedPrefs.putSharedPrefs(TEST_QUESTION);
         String returnedString = sharedPrefs.getSharedPrefs();
         assertEquals(TEST_QUESTION, returnedString);
