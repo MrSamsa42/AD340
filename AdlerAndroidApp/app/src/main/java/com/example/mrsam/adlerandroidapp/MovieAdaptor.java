@@ -23,7 +23,7 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_layout, parent, false );
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_layout, parent, false );
         return new CustomViewHolder(view);
     }
 
@@ -49,7 +49,7 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
             super(view);
             movieTitle = (TextView)view.findViewById(R.id.movie_title);
             movieYear = (TextView)view.findViewById(R.id.movie_year);
-            parentLayout = (CardView)view.findViewById(R.id.parent_layout);
+            parentLayout = (CardView)view.findViewById(R.id.movie_card_layout);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override

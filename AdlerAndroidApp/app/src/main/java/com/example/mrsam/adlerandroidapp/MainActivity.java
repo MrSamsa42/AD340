@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Instantiate sharedPreferences and SharedPrefs(i.e. helper class)
         sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.saved_question), Context.MODE_PRIVATE);
         sharedPrefs = new SharedPrefs(sharedPreferences);
+
         DrawerLayout drawer;
         ActionBarDrawerToggle toggle;
 
@@ -71,6 +72,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.about_link:
                 intent = new Intent(this, AboutActivity.class);
+                break;
+            case R.id.traffic_camera_link:
+                intent = new Intent(this, TrafficActivity.class);
                 break;
         }
         if(intent != null) {

@@ -3,6 +3,7 @@
     package="com.example.mrsam.adlerandroidapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +17,7 @@
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -31,9 +33,16 @@
             android:name=".MovieDetailActivity"
             android:label="@string/movie_detail_activity"
             android:parentActivityName=".MovieViewActivity" />
-        <activity android:name=".AboutActivity"
+        <activity
+            android:name=".AboutActivity"
             android:label="@string/about_activity"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".TrafficActivity"
+            android:label="@string/traffic_cam_activity"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
     </application>
 
 </manifest>
