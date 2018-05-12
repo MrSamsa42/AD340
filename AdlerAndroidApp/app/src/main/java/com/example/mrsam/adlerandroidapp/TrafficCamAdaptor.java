@@ -63,4 +63,11 @@ public class TrafficCamAdaptor extends RecyclerView.Adapter<TrafficCamAdaptor.Tr
             textViewTrafficCamType = itemView.findViewById(R.id.traffic_camera_type);
         }
     }
+
+    public void updateTrafficCamList(ArrayList<TrafficCam> filteredList){
+        trafficCamArrayList = new ArrayList<TrafficCam>();
+        trafficCamArrayList.addAll(filteredList);
+        notifyDataSetChanged();
+    }
+
 }

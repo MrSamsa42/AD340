@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +25,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class TrafficActivity extends AppCompatActivity {
+public class TrafficActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private RecyclerView recyclerView;
     private TrafficCamAdaptor trafficCamAdaptor;
     private ArrayList<TrafficCam> trafficCamArrayList;
@@ -97,6 +98,9 @@ public class TrafficActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_settings, menu);
+        MenuItem menuItem = menu.findItem(R.id.search_menu);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(this);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -119,4 +123,23 @@ public class TrafficActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        String searchInput = newText.toLowerCase();
+        ArrayList<TrafficCam> filteredList = new ArrayList<TrafficCam>();
+
+        for(int i = 0; i < trafficCamArrayList.size(); i++) {
+            TrafficCam cam = trafficCamArrayList.get(i);
+            if(cam.getDescription().contains(searchInput)){
+                filteredList.add(cam);
+            }
+        }
+        trafficCamAdaptor.updateTrafficCamList(filteredList);
+        return true;
+    }
 }
