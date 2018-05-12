@@ -115,9 +115,6 @@ public class TrafficActivity extends AppCompatActivity implements SearchView.OnQ
                 text = "Settings!";
                 Toast.makeText(this, text, duration).show();
                 return true;
-            case R.id.search_menu:
-                text = "Search!";
-                Toast.makeText(this, text, duration).show();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -135,7 +132,7 @@ public class TrafficActivity extends AppCompatActivity implements SearchView.OnQ
 
         for(int i = 0; i < trafficCamArrayList.size(); i++) {
             TrafficCam cam = trafficCamArrayList.get(i);
-            if(cam.getDescription().contains(searchInput)){
+            if(cam.getDescription().toLowerCase().contains(searchInput)){
                 filteredList.add(cam);
             }
         }
