@@ -3,10 +3,12 @@ package com.example.mrsam.adlerandroidapp;
 public class TrafficCam {
     private String description;
     private String imageURL;
+    private String type;
 
-    public TrafficCam(String description, String imageURL) {
+    public TrafficCam(String description, String imageURL, String type) {
         this.description = description;
         this.imageURL = imageURL;
+        this.type = type;
     }
 
     public String getImageURL() {
@@ -16,6 +18,8 @@ public class TrafficCam {
     public String getDescription() {
         return this.description;
     }
+
+    public String getType() {return this.type;}
 
 
 }

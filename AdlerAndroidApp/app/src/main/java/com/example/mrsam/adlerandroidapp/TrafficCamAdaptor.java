@@ -36,12 +36,13 @@ public class TrafficCamAdaptor extends RecyclerView.Adapter<TrafficCamAdaptor.Tr
     public void onBindViewHolder(@NonNull TrafficViewHolder holder, int position) {
         TrafficCam trafficCam = trafficCamArrayList.get(position);
         String imageURL = trafficCam.getImageURL();
-        String trafficCameraDescription = trafficCam.getDescription();
+        String trafficCamDescription = trafficCam.getDescription();
+        String trafficCamType = trafficCam.getType();
 
-        holder.textViewTrafficCamDescription.setText(trafficCameraDescription);
+        holder.textViewTrafficCamDescription.setText(trafficCamDescription);
+        holder.textViewTrafficCamType.setText(trafficCamType);
         Picasso.with(context).load(imageURL).fit().centerInside().into(holder.imageViewTrafficCam);
         //Glide.with(context).asBitmap().load(imageURL).into(holder.imageViewTrafficCam);
-
     }
 
     @Override
@@ -53,12 +54,13 @@ public class TrafficCamAdaptor extends RecyclerView.Adapter<TrafficCamAdaptor.Tr
     public class TrafficViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageViewTrafficCam;
         public TextView textViewTrafficCamDescription;
+        public TextView textViewTrafficCamType;
 
         public TrafficViewHolder(View itemView) {
             super(itemView);
             imageViewTrafficCam = itemView.findViewById(R.id.traffic_camera_image);
             textViewTrafficCamDescription = itemView.findViewById(R.id.traffic_camera_description);
-            
+            textViewTrafficCamType = itemView.findViewById(R.id.traffic_camera_type);
         }
     }
 }

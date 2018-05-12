@@ -2,6 +2,8 @@ package com.example.mrsam.adlerandroidapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -65,6 +67,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         Intent intent = null;
+        Context context = getApplicationContext();
+
+        ConnectivityManager cm =
+                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
 
         switch(id){
             case R.id.movie_link:
@@ -74,7 +85,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(this, AboutActivity.class);
                 break;
             case R.id.traffic_camera_link:
-                intent = new Intent(this, TrafficActivity.class);
+                if(isConnected) {
+                    intent = new Intent(this, TrafficActivity.class);
+                } else {
+                    Toast.makeText(this, "You are not connected to the internet!", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
         if(intent != null) {

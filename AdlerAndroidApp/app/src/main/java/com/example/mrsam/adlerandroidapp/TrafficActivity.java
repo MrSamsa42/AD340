@@ -72,10 +72,10 @@ public class TrafficActivity extends AppCompatActivity {
                                 for(int j = 0; j < cameras.length(); j++){
                                     JSONObject camera = cameras.getJSONObject(j);
 
-                                    String camDescription = camera.getString("Description");
                                     String imageURL = "http://www.seattle.gov/trafficcams/images/" + camera.getString("ImageUrl");
-
-                                    trafficCamArrayList.add(new TrafficCam(camDescription, imageURL));
+                                    String camDescription = camera.getString("Description");
+                                    String type = camera.getString("Type");
+                                    trafficCamArrayList.add(new TrafficCam(camDescription, imageURL, type));
                                 }
                             }
 
