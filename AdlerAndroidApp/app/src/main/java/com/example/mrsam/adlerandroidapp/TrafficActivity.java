@@ -72,10 +72,14 @@ public class TrafficActivity extends AppCompatActivity implements SearchView.OnQ
                                 JSONArray cameras = feature.getJSONArray("Cameras");
                                 for(int j = 0; j < cameras.length(); j++){
                                     JSONObject camera = cameras.getJSONObject(j);
-
-                                    String imageURL = "http://www.seattle.gov/trafficcams/images/" + camera.getString("ImageUrl");
-                                    String camDescription = camera.getString("Description");
                                     String type = camera.getString("Type");
+                                    String imageURL = camera.getString("ImageUrl");
+                                    if(type.equals("sdot")){
+                                        imageURL = "http://www.seattle.gov/trafficcams/images/" + imageURL;
+                                    } else {
+                                        imageURL = "http://images.wsdot.wa.gov/nw/" + imageURL;
+                                    }
+                                    String camDescription = camera.getString("Description");
                                     trafficCamArrayList.add(new TrafficCam(camDescription, imageURL, type));
                                 }
                             }
