@@ -136,7 +136,8 @@ public class TrafficActivity extends AppCompatActivity implements SearchView.OnQ
 
         for(int i = 0; i < trafficCamArrayList.size(); i++) {
             TrafficCam cam = trafficCamArrayList.get(i);
-            if(cam.getDescription().toLowerCase().contains(searchInput)){
+            if(cam.getDescription().toLowerCase().contains(searchInput) ||
+             cam.getType().toLowerCase().contains(searchInput)){
                 filteredList.add(cam);
             }
         }
