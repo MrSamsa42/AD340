@@ -56,6 +56,8 @@ public class TrafficActivity extends AppCompatActivity implements SearchView.OnQ
             actionBar.setDisplayHomeAsUpEnabled(true);
     }
 }
+
+    /*
     private void parseJSON() {
         String url = "https://web6.seattle.gov/Travelers/api/Map/Data?zoomId=13&type=2";
 
@@ -85,6 +87,49 @@ public class TrafficActivity extends AppCompatActivity implements SearchView.OnQ
                             }
 
                         trafficCamAdaptor.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();;
+            }
+        });
+        requestQueue.add(request);
+    }
+    */
+
+    private void parseJSON() {
+        String url = "https://web6.seattle.gov/Travelers/api/Map/Data?zoomId=17&type=2";
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("Features");
+
+                            for(int i = 0; i < jsonArray.length(); i++){
+                                JSONObject feature = jsonArray.getJSONObject(i);
+
+                                JSONArray cameras = feature.getJSONArray("Cameras");
+                                for(int j = 0; j < cameras.length(); j++){
+                                    JSONObject camera = cameras.getJSONObject(j);
+                                    String type = camera.getString("Type");
+                                    String imageURL = camera.getString("ImageUrl");
+                                    if(type.equals("sdot")){
+                                        imageURL = "http://www.seattle.gov/trafficcams/images/" + imageURL;
+                                    } else {
+                                        imageURL = "http://images.wsdot.wa.gov/nw/" + imageURL;
+                                    }
+                                    String camDescription = camera.getString("Description");
+                                    trafficCamArrayList.add(new TrafficCam(camDescription, imageURL, type));
+                                }
+                            }
+
+                            trafficCamAdaptor.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

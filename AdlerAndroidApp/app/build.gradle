@@ -48,7 +48,12 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
+    //stuff for traffic cams
     implementation 'com.android.volley:volley:1.0.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    //maps stuff
+    implementation 'com.google.android.gms:play-services-maps:15.0.1'
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.mrsam.adlerandroidapp;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -20,12 +21,17 @@ import android.widget.EditText;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected static final String TAG = "mrsam.adlerandroidapp";
     private SharedPrefs sharedPrefs;
     private SharedPreferences sharedPreferences;
     private String savedQuestion;
+
+    private static final int ERROR_DIALOG_REQUEST = 9001;
 
 
     @Override
@@ -35,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Instantiate sharedPreferences and SharedPrefs(i.e. helper class)
         sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.saved_question), Context.MODE_PRIVATE);
         sharedPrefs = new SharedPrefs(sharedPreferences);
+
+        isServicesOK();
 
         DrawerLayout drawer;
         ActionBarDrawerToggle toggle;
@@ -159,6 +167,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean validateInput(String str){
         return !str.isEmpty();
     }
+
+    public boolean isServicesOK() {
+        Log.d(TAG, "isServicesOK: checking google services version.");
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this);
+        if (available == ConnectionResult.SUCCESS) {
+            Log.d(TAG, "isServicesOK: Google Play Services is working");
+            return true;
+        } else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+            //e.g. wrong version
+            Log.d(TAG, "isServicesOK: an error occurred but we can fix it.");
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, ERROR_DIALOG_REQUEST);
+            dialog.show();
+        } else {
+            Toast.makeText(this, "You can't make map requests, you loser.", Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
+
 
     public void onButton3Click(View view){
         CharSequence text = "Cheers!";
