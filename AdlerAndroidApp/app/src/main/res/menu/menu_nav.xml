@@ -14,5 +14,8 @@
             android:id="@+id/traffic_camera_link"
             android:icon="@drawable/baseline_traffic_black_18dp"
             android:title="@string/traffic_cam_activity"/>
+        <item
+            android:id="@+id/map_link"
+            android:title="Map" />
     </group>
 </menu>

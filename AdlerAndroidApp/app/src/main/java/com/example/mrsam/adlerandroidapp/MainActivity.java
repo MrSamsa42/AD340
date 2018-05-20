@@ -99,6 +99,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(this, "You are not connected to the internet!", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.map_link:
+                intent = new Intent(this, MapActivity.class);
+                Log.d(TAG, "onNavigationItemSelected: Map selected");
+                break;
         }
         if(intent != null) {
             startActivity(intent);

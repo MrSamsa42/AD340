@@ -14,6 +14,7 @@
     <string name="movie_detail_activity">Movie Details</string>
     <string name="about_activity">About</string>
     <string name="traffic_cam_activity">Traffic Cameras</string>
+    <string name="traffic_map">Traffic Map</string>
 
     <!--open/close drawer actions - for accessibility purposes -->
     <string name="nav_open_drawer">Open navigation drawer</string>

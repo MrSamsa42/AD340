@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -15,9 +16,12 @@
         android:theme="@style/AppTheme">
 
         <meta-data
-            android:name="com.google.geo.API_KEY"
-            android:value="AIzaSyD2UB21_EILdzZBKuU71SoNlQKrF9m6YiE" />
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
+        <meta-data
+            android:name="com.google.geo.API_KEY"
+            android:value="AIzaSyDDCMCwVUR40Ow8_XODW-OodUFn3EK1d68" />
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="stateHidden">
@@ -46,9 +50,12 @@
         <activity
             android:name=".TrafficActivity"
             android:label="@string/traffic_cam_activity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" />
 
-        </activity>
+        <activity
+            android:name=".MapActivity"
+            android:label="@string/traffic_map"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>
