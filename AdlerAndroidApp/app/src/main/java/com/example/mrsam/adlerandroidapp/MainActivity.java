@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.util.Log;
 import android.widget.Toast;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SharedPrefs sharedPrefs;
     private SharedPreferences sharedPreferences;
     private String savedQuestion;
+    private boolean isServicesOK;
+
 
     private static final int ERROR_DIALOG_REQUEST = 9001;
 
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.saved_question), Context.MODE_PRIVATE);
         sharedPrefs = new SharedPrefs(sharedPreferences);
 
-        isServicesOK();
+        isServicesOK = isServicesOK();
 
         DrawerLayout drawer;
         ActionBarDrawerToggle toggle;
@@ -68,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //for debugging
         Log.d(TAG, "onCreate called from Main Activity");
+
+        init();
     }
 
     //need this because main implements NavigationView.OnNavigationItemSelectedListener
@@ -100,9 +105,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 break;
             case R.id.map_link:
-                intent = new Intent(this, MapActivity.class);
-                Log.d(TAG, "onNavigationItemSelected: Map selected");
-                break;
+                if(isServicesOK) {
+                    intent = new Intent(this, MapActivity.class);
+                    Log.d(TAG, "onNavigationItemSelected: Map selected");
+                    break;
+                } else {
+                    Toast.makeText(this, "Something's wrong with the services", Toast.LENGTH_SHORT);
+                }
         }
         if(intent != null) {
             startActivity(intent);
@@ -189,6 +198,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
+    private void init() {
+        Button btnMap = (Button) findViewById(R.id.button4);
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
 
     public void onButton3Click(View view){
         CharSequence text = "Cheers!";
@@ -197,12 +217,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toast.show();
     }
 
+    /*
     public void onButton4Click(View view){
         CharSequence text = "Prost!";
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(this, text, duration);
         toast.show();
     }
+    */
 
     public void onButton5Click(View view){
         CharSequence text = "à votre santé!";
