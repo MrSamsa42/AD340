@@ -13,6 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,6 +29,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -132,11 +142,65 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             map.setMyLocationEnabled(true);
         }
         //add markers here, like this example
-        /*
         map.addMarker(new MarkerOptions()
                 .position(new LatLng(10, 10))
                 .title("Hello world"));
-        */
+
+        //parse JSON
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = "https://web6.seattle.gov/Travelers/api/Map/Data?zoomId=17&type=2";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("Features");
+
+                            //loop through each feature
+                            for(int i = 0; i < jsonArray.length(); i++){
+                                JSONObject feature = jsonArray.getJSONObject(i);
+
+                                //get the lat and long for each cam
+                                JSONArray coordinates = feature.getJSONArray("PointCoordinate");
+                                double latitude = coordinates.getDouble(0);
+                                double longitude = coordinates.getDouble(1);
+
+                                //get cam data -- assumes only one camera per feature
+                                JSONArray cameras = feature.getJSONArray("Cameras");
+                                JSONObject camera = cameras.getJSONObject(0);
+                                String type = camera.getString("Type");
+                                String imageURL = camera.getString("ImageUrl");
+                                if(type.equals("sdot")){
+                                    imageURL = "http://www.seattle.gov/trafficcams/images/" + imageURL;
+                                } else {
+                                    imageURL = "http://images.wsdot.wa.gov/nw/" + imageURL;
+                                }
+                                String camDescription = camera.getString("Description");
+
+                                //add map markers
+                                map.addMarker(new MarkerOptions()
+                                        .position(new LatLng(latitude, longitude))
+                                        .title(camDescription));
+                            }
+                            //trafficCamAdaptor.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();;
+            }
+        });
+        requestQueue.add(request);
+
+
+
+
+
+
+
     }
 
     @Override
@@ -162,6 +226,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         }
     }
+
+
+
+
 
 
 
