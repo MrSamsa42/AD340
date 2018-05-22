@@ -57,10 +57,9 @@ public class TrafficActivity extends AppCompatActivity implements SearchView.OnQ
     }
 }
 
-
     private void parseJSON() {
         String url = "https://web6.seattle.gov/Travelers/api/Map/Data?zoomId=17&type=2";
-
+        ArrayList<TrafficCam> tempTrafficCamArrayList = new ArrayList<TrafficCam>();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -85,7 +84,6 @@ public class TrafficActivity extends AppCompatActivity implements SearchView.OnQ
                                     trafficCamArrayList.add(new TrafficCam(camDescription, imageURL, type));
                                 }
                             }
-
                             trafficCamAdaptor.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();

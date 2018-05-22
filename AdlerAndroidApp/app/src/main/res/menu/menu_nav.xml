@@ -16,6 +16,6 @@
             android:title="@string/traffic_cam_activity"/>
         <item
             android:id="@+id/map_link"
-            android:title="Map" />
+            android:title="@string/user_location" />
     </group>
 </menu>

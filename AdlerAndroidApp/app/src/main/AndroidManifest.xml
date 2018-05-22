@@ -55,7 +55,7 @@
 
         <activity
             android:name=".MapActivity"
-            android:label="@string/traffic_map"
+            android:label="@string/user_location"
             android:parentActivityName=".MainActivity"/>
     </application>
 
