@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,7 +26,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,7 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback{
 
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
@@ -129,22 +132,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         if (locationPermissionsGranted) {
             getDeviceLocation();
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
             map.setMyLocationEnabled(true);
         }
-        //add markers here, like this example
-        map.addMarker(new MarkerOptions()
-                .position(new LatLng(10, 10))
-                .title("Hello world"));
 
         //parse JSON
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -177,10 +170,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 }
                                 String camDescription = camera.getString("Description");
 
+                                LatLng camCoord = new LatLng(latitude, longitude);
+                                MarkerOptions markerOptions = new MarkerOptions();
+
+                                markerOptions.position(camCoord).title(camDescription);
+
+                                //TrafficCam info = new TrafficCam(camDescription, imageURL, type);
+                                InfoWindowData info = new InfoWindowData();
+                                info.setImageURL(imageURL);
+
+                                CustomInfoWindow customInfoWindow = new CustomInfoWindow(MapActivity.this);
+                                map.setInfoWindowAdapter(customInfoWindow);
+
                                 //add map markers
-                                map.addMarker(new MarkerOptions()
-                                        .position(new LatLng(latitude, longitude))
-                                        .title(camDescription));
+                                Marker m = map.addMarker(markerOptions);
+                                m.setTag(info);
+                                m.showInfoWindow();
+
+                                //map.moveCamera(CameraUpdateFactory.newLatLng(camCoord));
                             }
                             //trafficCamAdaptor.notifyDataSetChanged();
                         } catch (JSONException e) {
@@ -194,13 +201,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
         requestQueue.add(request);
-
-
-
-
-
-
-
     }
 
     @Override
@@ -226,13 +226,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         }
     }
-
-
-
-
-
-
-
 }
 
 
