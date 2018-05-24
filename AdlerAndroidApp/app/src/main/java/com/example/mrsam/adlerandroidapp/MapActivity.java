@@ -1,6 +1,7 @@
 package com.example.mrsam.adlerandroidapp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
@@ -43,7 +44,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final String TAG = "MapActivity";
-    private static final float DEFAULT_ZOOM = 15f;
+    private static final float DEFAULT_ZOOM = 9f;
 
     private Boolean locationPermissionsGranted = false;
     private GoogleMap map;
@@ -79,11 +80,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         if (task.isSuccessful()) {
                             Log.d(TAG, "getDeviceLocation, onComplete: found location!");
                             Location currentLocation = (Location) task.getResult();
-                            LatLng currentLatLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                            moveCamera(currentLatLng, DEFAULT_ZOOM);
+                            if(currentLocation != null) {
+                                LatLng currentLatLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                                moveCamera(currentLatLng, DEFAULT_ZOOM);
+                            }
                         } else {
                             Log.d(TAG, "onCompleteListener, onComplete: location is null:");
-                            Toast.makeText(MapActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MapActivity.this, "Unable to get current location!  Turn on Location services!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(MapActivity.this, MainActivity.class);
+                            startActivity(intent);
                         }
                     }
                 });
