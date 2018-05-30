@@ -12,11 +12,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHolder>{
-    private Context context;
+    //private Context context;
     private ArrayList<Movie> movies;
 
     public MovieAdaptor(Context context, ArrayList<Movie> movies) {
-        this.context = context;
+        //this.context = context;
         this.movies = movies;
     }
 
@@ -55,6 +55,7 @@ public class MovieAdaptor extends RecyclerView.Adapter<MovieAdaptor.CustomViewHo
                 @Override
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
+                    Context context = v.getContext();
 
                     Intent intent = new Intent(context, MovieDetailActivity.class);
 
